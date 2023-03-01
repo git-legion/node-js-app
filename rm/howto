@@ -1,0 +1,24 @@
+1. change  const host= 'http://your_private_ip:8000'   in   FrontEnd/routes.js file
+
+2. change  host: "your_private_ip",   in   backend/db/conn.js file
+
+
+3. create docker image of frontend, backend, mysql  using Dockerfile available inside direcotries FrontEnd, backend, mysql
+
+	commands to create dockerimage	'docker build -t frontend:v1  /FrontEnd/.'
+					'docker build -t backend:v1  /backend/.'
+					'docker build -t mysql:v1  /mysql/.'
+
+4. run the containers using the images
+
+	commands to create frontend containers 'docker container run -d --name frontend -p 5000:5000 --network host frontend:v1'
+
+	commands to create mysql containers 'docker container run -d --name mysql --network host mysql:v1'
+
+	commands to create backend containers 'docker container run -d --name backend --network host backend:v1'
+
+
+5. if status of all containers are up access the webapp using https://your_public_ip:5000 and check if the database working or not
+
+
+6. push docker images on docker hub
